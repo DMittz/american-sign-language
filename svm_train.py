@@ -25,30 +25,23 @@ def load_data(folder_path, num_images_per_class):
     return images, labels
 
 def train_svm(train_folder, test_folder, num_images_per_class=50):
-    # Load a subset of training data
+   
+    # Loading subset of training data
     train_images, train_labels = load_data(train_folder, num_images_per_class)
 
-    # Load testing data
     test_images, test_labels = load_data(test_folder, float('inf'))  # Load all test images
 
-    # Initialize and train the SVM model
     svm_model = SVC(kernel='linear', C=1.0)
     svm_model.fit(train_images, train_labels)
 
-    # Make predictions on the test set
     test_predictions = svm_model.predict(test_images)
 
-    # Evaluate the model
     accuracy = accuracy_score(test_labels, test_predictions)
     print(f'Test Accuracy: {accuracy * 100:.2f}%')
 
-    # Save the trained model if needed
     return svm_model
 
 if __name__ == "__main__":
-    train_dataset_folder = 'C:/Users/dhruv/OneDrive/Desktop/ASL/data/asl_alphabet_train'
-    test_dataset_folder = 'C:/Users/dhruv/OneDrive/Desktop/ASL/data/asl_alphabet_test/asl_alphabet_test'
+    train_dataset_folder = 'C:/Users/OneDrive/Desktop/ASL/data/asl_alphabet_train'
+    test_dataset_folder = 'C:/Users/OneDrive/Desktop/ASL/data/asl_alphabet_test'
     trained_model = train_svm(train_dataset_folder, test_dataset_folder, num_images_per_class=50)
-    # Save the trained_model if needed
-
-print ('All good!')
