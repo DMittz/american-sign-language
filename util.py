@@ -25,5 +25,3 @@ def getGestureImg(cnt,img,th1,model):
     resp=st.predict(model,imgTG)
     img=cv2.imread('TrainData/'+unichr(int(resp[0])+64)+'_2.jpg')
     return img,unichr(int(resp[0])+64)
-
-print('This also good')
